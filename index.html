@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vijay Parushuram – AI Data & Cloud Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0f1e;
+      --surface: #111827;
+      --surface2: #1a2235;
+      --accent: #00d4ff;
+      --accent2: #7c3aed;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --border: #1e2d45;
+      --green: #10b981;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 2rem;
+      background: rgba(10,15,30,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 7rem 2rem 4rem;
+      max-width: 900px; margin: 0 auto;
+      position: relative;
+    }
+    .hero-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block; width: 32px; height: 1px;
+      background: var(--accent);
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    h1 .highlight {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-stats {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+      margin-bottom: 3rem;
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      border-left: 3px solid var(--accent);
+    }
+    .stat { display: flex; flex-direction: column; gap: 0.2rem; }
+    .stat-num {
+      font-size: 1.6rem; font-weight: 700;
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--accent);
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent); color: #000;
+      border: none;
+    }
+    .btn-primary:hover { background: #33ddff; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 2rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+    .divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .skill-card-title {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-size: 0.78rem;
+      background: var(--surface2);
+      color: var(--muted);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .exp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .exp-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+    }
+    .exp-card:hover { border-color: var(--accent); }
+    .exp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem; }
+    .exp-title { font-size: 1.05rem; font-weight: 600; }
+    .exp-period {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem; color: var(--muted);
+    }
+    .exp-company { color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .exp-bullets li {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.6;
+      padding-left: 1rem; position: relative;
+    }
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--accent); font-size: 0.75rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .project-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .project-title { font-size: 1rem; font-weight: 600; }
+    .project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .project-result {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem; color: var(--green);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .project-result::before { content: '↑'; }
+
+    /* CERTS */
+    .certs-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .cert-item {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+    .cert-name { font-size: 0.92rem; font-weight: 500; }
+    .cert-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      background: rgba(0,212,255,0.08);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+    }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      text-align: center;
+    }
+    .contact-box h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .contact-box p { color: var(--muted); margin-bottom: 2rem; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 1rem; }
+      .nav-links { gap: 1rem; }
+      .hero-stats { gap: 1.5rem; }
+      .contact-box { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">vijay.pgk</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">AI · Data · Cloud</div>
+  <h1>Vijay Parushuram<br><span class="highlight">Turning data into decisions.</span></h1>
+  <p class="hero-sub">
+    AI Data and Cloud Analyst with 4+ years across financial services and consulting.
+    I build end-to-end analytics pipelines, Power BI dashboards, and cloud data infrastructure that leadership actually uses.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">95%</span>
+      <span class="stat-label">Data accuracy achieved</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">£45K</span>
+      <span class="stat-label">Payments recovered</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">40%</span>
+      <span class="stat-label">Reporting time saved</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1.5M</span>
+      <span class="stat-label">Records processed</span>
+    </div>
+  </div>
+  <div class="hero-btns">
+    <a href="#contact" class="btn btn-primary">Get in touch</a>
+    <a href="#projects" class="btn btn-outline">View projects</a>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I work with</div>
+  <h2>Skills &amp; Technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">BI &amp; Visualisation</div>
+      <div class="skill-tags">
+        <span class="tag">Power BI</span>
+        <span class="tag">Tableau</span>
+        <span class="tag">DAX</span>
+        <span class="tag">Power Query</span>
+        <span class="tag">Excel</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Programming</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">SQL</span>
+        <span class="tag">PostgreSQL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Cloud &amp; Data Eng</div>
+      <div class="skill-tags">
+        <span class="tag">Azure Data Factory</span>
+        <span class="tag">AWS S3</span>
+        <span class="tag">RDS</span>
+        <span class="tag">Athena</span>
+        <span class="tag">Blob Storage</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Tools &amp; Methods</div>
+      <div class="skill-tags">
+        <span class="tag">Microsoft Fabric</span>
+        <span class="tag">dbt</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Git</span>
+        <span class="tag">Agile</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Where I've worked</div>
+  <h2>Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <span class="exp-title">AI Data and Cloud Analyst</span>
+        <span class="exp-period">Nov 2023 – Present</span>
+      </div>
+      <div class="exp-company">Victoria Solutions · London, UK</div>
+      <ul class="exp-bullets">
+        <li>Built Power BI dashboard with 15+ KPIs integrating financial and CRM data, accelerating leadership decisions by 3 days.</li>
+        <li>Processed 1.5 million records via Azure Data Factory pipelines, lifting data accuracy from 78% to 95%.</li>
+        <li>Identified and recovered £45,000 in duplicate payments through anomaly detection and financial data analysis.</li>
+        <li>Automated monthly reporting with Power Query and Python — saving 4–5 hours per cycle (40% reduction).</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <span class="exp-title">Business Analyst (Internship)</span>
+        <span class="exp-period">Jun 2023 – Nov 2023</span>
+      </div>
+      <div class="exp-company">SIRI Organisation Trade · United Kingdom</div>
+      <ul class="exp-bullets">
+        <li>Developed Excel and Power BI models monitoring £2.3 million in sales, contributing to 8% profit growth.</li>
+        <li>Designed logistics dashboard that cut annual fuel costs by 12%, saving ~£28,000.</li>
+        <li>Found that 20% of clients drove 65% of revenue — enabling the sales team to focus on high-value accounts.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <span class="exp-title">Business Development Consultant</span>
+        <span class="exp-period">Jul 2019 – Dec 2021</span>
+      </div>
+      <div class="exp-company">ETL IT Solutions · Hyderabad, India</div>
+      <ul class="exp-bullets">
+        <li>Delivered Tableau and Excel dashboards for 8+ clients to support strategic decision-making.</li>
+        <li>Identified INR 5 million+ in potential client savings through data audits, informing investment strategy.</li>
+        <li>Built performance reporting frameworks contributing to a 10% improvement in client goal attainment.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Things I've built</div>
+  <h2>Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-icon">☁️</div>
+      <div class="project-title">Cloud Personal Finance Tracker</div>
+      <div class="project-desc">FastAPI + AWS application with automated expense categorisation. Identifies spending patterns and savings opportunities.</div>
+      <div class="project-result">Up to 15% monthly savings identified</div>
+      <div class="skill-tags" style="margin-top:0.5rem">
+        <span class="tag">FastAPI</span><span class="tag">AWS</span><span class="tag">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">📊</div>
+      <div class="project-title">Enterprise Sales Analytics Dashboard</div>
+      <div class="project-desc">Analysed 500,000+ sales records in Python to surface a £120,000 sales gap and inform targeted campaigns.</div>
+      <div class="project-result">18% sales increase from campaign</div>
+      <div class="skill-tags" style="margin-top:0.5rem">
+        <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Power BI</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🏨</div>
+      <div class="project-title">Hospitality Revenue Analytics</div>
+      <div class="project-desc">Analysed 50,000+ hotel bookings to build a dynamic pricing model identifying peak-season revenue opportunities.</div>
+      <div class="project-result">8–12% revenue uplift identified</div>
+      <div class="skill-tags" style="margin-top:0.5rem">
+        <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Tableau</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CERTS -->
+<section>
+  <div class="section-label">Certifications</div>
+  <h2>In Progress</h2>
+  <div class="certs-list">
+    <div class="cert-item">
+      <span class="cert-name">AWS Certified Cloud Practitioner</span>
+      <span class="cert-date">Expected Aug 2026</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-name">Microsoft Azure Data Engineer Associate (DP-203)</span>
+      <span class="cert-date">Expected Nov 2026</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-name">Microsoft Power BI Data Analyst Associate (PL-300)</span>
+      <span class="cert-date">Expected Feb 2027</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <h3>Let's work together</h3>
+    <p>Open to new opportunities in AI, data, and cloud analytics. Based in the UK — open to Skilled Worker visa sponsorship.</p>
+    <div class="contact-links">
+      <a href="mailto:vijayparushuram@outlook.com" class="btn btn-primary">Email me</a>
+      <a href="https://linkedin.com" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <a href="https://github.com" target="_blank" class="btn btn-outline">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  vijay parushuram pgk · built with github pages
+</footer>
+
+</body>
+</html>
