@@ -296,12 +296,27 @@
       font-family: 'IBM Plex Mono', monospace;
     }
 
+    /* PROFILE PHOTO */
+    .hero-top {
+      display: flex; align-items: center; gap: 2rem;
+      margin-bottom: 2rem; flex-wrap: wrap;
+    }
+    .profile-photo {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      object-fit: cover; object-position: top;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 30px rgba(0,212,255,0.2);
+      flex-shrink: 0;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 600px) {
       nav { padding: 1rem; }
       .nav-links { gap: 1rem; }
       .hero-stats { gap: 1.5rem; }
       .contact-box { padding: 2rem 1.5rem; }
+      .profile-photo { width: 90px; height: 90px; }
     }
   </style>
 </head>
@@ -319,8 +334,13 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">AI · Data · Cloud</div>
-  <h1>Vijay Parushuram<br><span class="highlight">Turning data into decisions.</span></h1>
+  <div class="hero-top">
+    <img src="profile.png" alt="Vijay Parushuram" class="profile-photo" />
+    <div>
+      <div class="hero-tag">AI · Data · Cloud</div>
+      <h1>Vijay Parushuram<br><span class="highlight">Turning data into decisions.</span></h1>
+    </div>
+  </div>
   <p class="hero-sub">
     AI Data and Cloud Analyst with 4+ years across financial services and consulting.
     I build end-to-end analytics pipelines, Power BI dashboards, and cloud data infrastructure that leadership actually uses.
